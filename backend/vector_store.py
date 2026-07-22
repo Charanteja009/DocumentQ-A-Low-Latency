@@ -3,7 +3,9 @@ backend/vector_store.py
 Qdrant Vector DB Manager with Session-Based Multi-Tenancy Filtering
 """
 
+import uuid
 import os
+from qdrant_client.models import PointStruct
 from typing import List, Dict, Any
 from qdrant_client import AsyncQdrantClient
 from qdrant_client.http import models
@@ -51,7 +53,7 @@ class VectorStoreManager:
             field_schema=models.PayloadSchemaType.KEYWORD
         )
         print("Payload index on 'session_id' ready.")
-        
+
     async def upsert_chunks(
         self, 
         session_id: str, 
@@ -65,7 +67,7 @@ class VectorStoreManager:
         """
         points = [
             models.PointStruct(
-                id=hash(f"{session_id}_{doc_name}_{i}"),
+                id=str(uuid.uuid4()),
                 vector=vector,
                 payload={
                     "session_id": session_id,
