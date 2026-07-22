@@ -1,5 +1,5 @@
 services:
-  # 1. Backend Service (Docker container)
+  # 1. Backend Web Service (Docker container)
   - type: web
     name: rag-backend-service
     env: docker
@@ -17,9 +17,9 @@ services:
       - key: REDIS_URL
         sync: false
 
-  # 2. Frontend Service (Static HTML/JS site)
-  - type: static
-    name: rag-frontend-service
+# 2. Frontend Static Site Service
+staticSites:
+  - name: rag-frontend-service
     buildCommand: ""
     staticPublishPath: ./frontend
     routes:
