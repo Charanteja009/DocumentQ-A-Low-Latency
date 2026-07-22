@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL =  "https://rag-backend-service-eert.onrender.com";
 
 // Manage session_id
 let sessionId = localStorage.getItem("rag_session_id");
