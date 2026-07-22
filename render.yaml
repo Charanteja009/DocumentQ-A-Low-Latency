@@ -1,8 +1,8 @@
 services:
-  # 1. Backend Web Service (Docker container)
+  # 1. Backend Web Service (FastAPI Docker Container)
   - type: web
     name: rag-backend-service
-    env: docker
+    runtime: docker
     dockerfilePath: backend/Dockerfile
     dockerContext: backend
     plan: free
@@ -17,9 +17,10 @@ services:
       - key: REDIS_URL
         sync: false
 
-# 2. Frontend Static Site Service
-staticSites:
-  - name: rag-frontend-service
+  # 2. Frontend Static Site (HTML/JS)
+  - type: web
+    name: rag-frontend-service
+    runtime: static
     buildCommand: ""
     staticPublishPath: ./frontend
     routes:
