@@ -1,0 +1,30 @@
+services:
+  # 1. Backend Service (Docker container)
+  - type: web
+    name: rag-backend-service
+    env: docker
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
+    plan: free
+    region: singapore
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: QDRANT_URL
+        sync: false
+      - key: QDRANT_API_KEY
+        sync: false
+      - key: REDIS_URL
+        sync: false
+
+  # 2. Frontend Service (Static HTML/JS site)
+  - type: web
+    name: rag-frontend-service
+    env: static
+    buildCommand: ""
+    staticPublishPath: ./frontend
+    plan: free
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

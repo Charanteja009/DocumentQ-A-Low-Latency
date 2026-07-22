@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAG Engine | Intelligent Document Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Light Mode Animated Grid Background -->
+  <div class="grid-bg"></div>
+
+  <div class="app-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <span class="logo-badge">⚡</span>
+          <span class="logo-text">RAG Core</span>
+        </div>
+        <span class="status-pill">
+          <span class="pulse-dot"></span> Active
+        </span>
+      </div>
+
+      <div class="sidebar-section">
+        <label class="section-label">Knowledge Base</label>
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept=".txt,.pdf,.docx" hidden />
+          <span class="file-hint">Supports .txt, .pdf, .docx files</span>
+          <div class="dropzone-content">
+            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <span id="fileLabelText">Drop document or browse</span>
+            <span class="file-hint">Supports .txt files</span>
+          </div>
+        </div>
+        <button id="uploadBtn" class="secondary-btn" disabled>Ingest Document</button>
+        <div id="uploadStatus" class="toast"></div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="session-card">
+          <span class="session-label">Session Key</span>
+          <code id="displaySessionId">...</code>
+        </div>
+        <button id="newSessionBtn" class="icon-btn" title="New Thread">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          <span>New Thread</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="chat-workspace">
+      
+      <header class="topbar">
+        <div class="topbar-info">
+          <h2>Document Intelligence Workspace</h2>
+          <p>Sub-300ms neural vector search with session memory</p>
+        </div>
+      </header>
+
+      <!-- Message History Area -->
+      <div class="messages-container" id="chatHistory">
+        <div class="empty-state">
+          <div class="empty-icon">📁</div>
+          <h3>No Context Loaded Yet</h3>
+          <p>Upload a document on the sidebar to contextualize your responses, or start chatting directly.</p>
+        </div>
+      </div>
+
+      <!-- Input Bar Area -->
+      <div class="input-wrapper">
+        <form id="chatForm" class="chat-input-card">
+          <textarea 
+            id="promptInput" 
+            placeholder="Ask a question about your documents..." 
+            rows="1"
+            required
+          ></textarea>
+          <button type="submit" id="sendBtn" class="send-btn" aria-label="Send Message">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
