@@ -18,12 +18,10 @@ services:
         sync: false
 
   # 2. Frontend Service (Static HTML/JS site)
-  - type: web
+  - type: static
     name: rag-frontend-service
-    env: static
     buildCommand: ""
     staticPublishPath: ./frontend
-    plan: free
     routes:
       - type: rewrite
         source: /*
